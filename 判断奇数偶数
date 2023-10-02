@@ -1,0 +1,17 @@
+//判断奇数偶数
+#include <stdio.h>
+
+int main()
+{
+	int input;
+	printf("输入数字:");
+	scanf("%d", &input);
+	else
+	{
+		if (1 == input % 2)
+			printf("奇数");
+		else
+			printf("偶数");
+	}
+	return 0;
+}
