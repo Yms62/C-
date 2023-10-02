@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main()
+{
+	int n,a = 1;
+	printf("输入数字:");
+	scanf("%d", &n);
+	for (; n != 1; n--)
+	{
+		a = a * n;
+	}
+	printf("阶乘是:%d\n", a);
+	return 0;
+}
