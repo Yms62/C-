@@ -1,0 +1,29 @@
+//字符串查找
+/*
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	char s[] = "asdfgghjklg12344", a[20] = {'\0'},n;
+	int   i, len, count = 0;
+	len = strlen(s);
+	printf("Please enter what you want to find:");
+	scanf("%c", &n);
+	for(i=0;i<len;i++)
+		if (n == s[i])
+		{
+			a[count] = i;
+			count += 1;
+		}
+	if (count == 0)
+		printf("not find");
+	else
+	{
+		printf(" 共出现%d次\n下标分别是", count);
+		for (i = 0; a[i] != '\0'; i++)
+			printf("%d ", a[i]);
+	}
+	return 0;
+}
+*/
