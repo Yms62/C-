@@ -1,0 +1,29 @@
+//矩阵相乘
+
+#include <stdio.h>
+
+int main()
+{
+	
+	int a[2][3] = { 1,2,3,4,5,6 };//n行m列
+	int b[3][4] = { 1,2,3,4,5,6,6,5,4,3,2,1 };//m行k列
+	int c[2][4] = {0};//n行k列
+	int i, j,sum,p;
+	for(i=0;i<2;i++)
+		for (j = 0; j < 4; j++)
+		{
+			sum = 0;
+			for (p = 0; p < 3; p++)
+			{
+				sum += a[i][p] * b[p][j];
+			}
+			c[i][j] = sum;
+		}
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 0; j < 4; j++)
+			printf("%5d", c[i][j]);
+		printf("\n");
+	}
+	return 0;
+}
