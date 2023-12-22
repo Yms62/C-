@@ -1,0 +1,52 @@
+//https://www.luogu.com.cn/problem/P1047
+/*
+#include <stdio.h>
+#include <math.h>
+
+int Remove(int a[][2], int m, int lt[], int l)
+{
+	int i, j, count = 0;
+	//移树
+	for (i = 0; i < m; i++)
+	{
+		for (j = a[i][0]; j <= a[i][1]; j++)
+		{
+			lt[j] = 0;
+		}
+	}
+	//计数
+	for (i = 0; i <= l; i++)
+		if (lt[i] == 1)
+			count++;
+	return count;
+}
+
+int main()
+{
+	int l, m, lt[10001] = { 0 };
+	int i, a[100][2] = {0};
+	scanf("%d %d", &l, &m);
+	//范围判断
+	if (l < 1 || l>10000 || m < 1 || m>100)
+	{
+		printf("超出范围");
+		return 0;
+	}
+	//存储
+	for (i = 0; i <= l; i++)
+		lt[i] = 1;
+	for (i = 0; i < m; i++)
+	{
+		scanf("%d %d", &a[i][0], &a[i][1]);
+		//范围判断
+		if (a[i][0] < 0 || a[i][1]<a[i][0] || a[i][1]>l)
+		{
+			printf("超出范围");
+			return 0;
+		}
+	}
+	//输出
+	printf("%d", Remove(a, m, lt, l));
+	return 0;
+}
+*/
