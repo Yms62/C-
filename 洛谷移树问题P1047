@@ -1,5 +1,5 @@
 //https://www.luogu.com.cn/problem/P1047
-/*
+
 #include <stdio.h>
 #include <math.h>
 
@@ -49,4 +49,4 @@ int main()
 	printf("%d", Remove(a, m, lt, l));
 	return 0;
 }
-*/
+
