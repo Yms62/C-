@@ -1,0 +1,29 @@
+//不重复数组删去指定数
+
+#include <stdio.h>
+
+int main()
+{
+	int a[] = { 1,4,7,9,23,46,76,12,39 }, x, i,k;
+	int b[8];
+	printf("please input x:");
+	scanf("%d", &x);
+	for (i = 0,k=0; i < 9;k++, i++)
+	{
+		if (x == a[i])
+			i += 1;
+		if (k == 8)
+		{
+			k += 1;
+			printf("x不存在于数组中");
+			break;
+		}
+		b[k] = a[i];
+	}
+	if(k==8)
+		for (x = 0; x < 8; x++)
+		{
+			printf("%d ", b[x]);
+		}
+	return 0;
+}
