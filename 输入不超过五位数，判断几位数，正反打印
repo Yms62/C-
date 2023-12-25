@@ -1,0 +1,48 @@
+//输入不超过五位数，判断几位数，正反打印
+
+#include <stdio.h>
+
+int main()
+{
+	int a;
+	int d1, d2, d3, d4, d5, n, m;
+	printf("Please input the number: ");
+	scanf("%d", &a);
+	d5 = a / 10000;
+	d4 = a / 1000 - d5 * 10;
+	d3 = a / 100 - d5 * 100 - d4 * 10;
+	d2 = a / 10 - d5 * 1000 - d4 * 100 - d3 * 10;
+	d1 = a - d5 * 10000 - d4 * 1000 - d3 * 100 - d2 * 10;
+	if (a > 99999 || a < 0)
+	{
+		printf("error");
+		goto End;
+	}
+	else if (a>=0 && a < 10)
+		m = 1;
+	else if (a >= 10 && a < 100)
+		m = 2;
+	else if (a >= 100 && a < 1000)
+		m = 3;
+	else if (a >= 1000 && a < 10000)
+		m = 4;
+	else if (a >= 10000 && a <= 99999)
+		m = 5;
+	printf("%d位数\n", m);
+	printf("%d\n", a);
+	switch (m)
+	{
+		case 5:
+			printf("%d%d%d%d%d", d1, d2, d3, d4, d5); break;
+		case 4:
+			printf("%d%d%d%d", d1, d2, d3, d4); break;
+		case 3:
+			printf("%d%d%d", d1, d2, d3); break;
+		case 2:
+			printf("%d%d", d1, d2); break;
+		case 1:
+			printf("%d\t",d1);break;
+	}
+	End:
+	return 0;
+}
