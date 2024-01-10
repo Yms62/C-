@@ -1,0 +1,224 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <windows.h>
+
+typedef struct List//链表节点
+{
+	int num;
+	char name[20];
+	struct List* next;
+}List;
+
+void input(List* p)//输入数据
+{
+	printf("请输入编号:");
+	scanf("%d", &(p->num));
+	getchar();//清除键盘缓冲区
+	printf("请输入姓名:");
+	scanf("%s", p->name);
+	getchar();//清除键盘缓冲区
+}
+
+struct List* H_creat_list()//创建链表
+{
+	List* head = NULL;
+	List* p1 = NULL, * p2 = NULL;
+	char c;
+	while (1)
+	{
+		printf("是否继续创建链表节点(y/n)\n");
+		scanf("%c", &c);
+		if (c == 'y')
+		{
+			p1 = (List*)malloc(sizeof(List));
+			input(p1);
+			if (head == NULL)
+			{
+				head = p1;
+				p2 = p1;
+			}
+			else
+			{
+				p2->next = p1;
+				p2 = p1;
+			}
+		}
+		else if (c == 'n')
+		{
+			break;
+		}
+		else
+		{
+			printf("输入错误请重新输入\n");
+			getchar();
+			continue;
+		}
+		p1->next = NULL;
+	}
+	return head;
+}
+
+List* insert_Node_k(const List* head)//插入链表
+{
+	List* new = NULL;//创建新节点
+	List* pi = head;//指定节点
+	int bef;
+	int i;
+	//assert(p != NULL);
+	if (head == NULL)//检测是否存在链表
+	{
+		printf("ERROR,链表不存在\n");
+		return head;
+	}
+	new = (List*)malloc(sizeof(List));
+	new->next = NULL;
+	printf("请输入插入的编号:");
+	scanf("%d", &(new->num));
+	getchar();//清除键盘缓冲区
+	printf("请输入插入的姓名:");
+	scanf("%s", new->name);
+	getchar();//清除键盘缓冲区
+	printf("请输入插入的位置(插入至输入节点之后，若此节点为头节点输入-1):");
+	scanf("%d", &bef);
+	getchar();//清除键盘缓冲区
+	if (bef == -1)
+	{
+		new->next = pi;
+		pi = new;
+		printf("插入完成\n");
+		return pi;
+	}
+	for (i = 1; i <= bef; i++)
+	{
+		if (pi->next == NULL)//检测输入节点是否越界
+		{
+			printf("此节点不存在，返回菜单\n");
+			return head;
+		}
+		pi = pi->next;
+	}
+	new->next = pi->next;
+	pi->next = new;
+	printf("插入完成\n");
+	return head;
+}
+
+List* Del_Node_x(const List* head)//删除链表
+{
+	List* pi = head;//指定节点
+	int x;//删除的链表内编号(num)
+	//assert(p != NULL);
+	if (head == NULL)//检测是否存在链表
+	{
+		printf("ERROR,链表不存在\n");
+		return head;
+	}
+	printf("请输入删除的编号:");
+	scanf("%d", &x);
+	if (head->num == x)
+	{
+		head = head->next;
+		return head;
+	}
+	while (pi != NULL)
+	{
+		if (pi->next->num == x)
+		{
+			pi->next = pi->next->next;
+			return head;
+		}
+		pi = pi->next;
+	}
+}
+
+void print(List* const head)//打印链表
+{
+	List* p = NULL;
+	p = head;
+	//assert(p != NULL);
+	if (p == NULL)//检测是否存在链表
+	{
+		printf("ERROR，链表不存在\n");
+		return;
+	}
+	printf("num	name\n");
+	while (p != NULL)
+	{
+		printf("%d	%s\n", p->num, p->name);
+		p = p->next;
+	}
+}
+
+void menu()//菜单
+{
+	printf("************************\n");
+	printf("**     1.创建链表     **\n");
+	printf("**     2.打印链表     **\n");
+	printf("**     3.插入链表     **\n");
+	printf("**     4.删除链表     **\n");
+	printf("**     5.清除窗口     **\n");
+	printf("**     0.退出         **\n");
+	printf("************************\n");
+}
+
+void struction()//程序框架
+{
+	List* head = NULL;//头节点
+	int x = 1;//菜单选项变量
+	int y = 1;//覆盖选项变量
+	while (x)
+	{
+		menu();//菜单
+		scanf("%d", &x);
+		getchar();//清除键盘缓冲区
+		switch (x)
+		{
+		case 1://创建链表
+			if (head != NULL)//检测是否已有链表
+				do
+				{
+					printf("已有链表，是否覆盖创建新链表(1.是/0.否):");
+					scanf("%d", &y);
+					getchar();//清除键盘缓冲区
+					switch (y)
+					{
+					case 1://覆盖
+						break;
+					case 0://不覆盖
+						break;
+					default://错误
+						printf("输入错误，请重新输入\n");
+						break;
+					}
+				} while (y != 1 && y != 0);
+				if (y == 1)
+					head = H_creat_list();
+				break;
+		case 2://打印链表
+			print(head);
+			break;
+		case 3://插入链表
+			head = insert_Node_k(head);
+			break;
+		case 4://删除链表
+			head = Del_Node_x(head);
+			break;
+		case 5://清除窗口
+			system("cls");
+			break;
+		case 0://退出
+			printf("退出程序\n");
+			break;
+		default://错误
+			printf("输入错误，请重新输入\n");
+			break;
+		}
+	}
+}
+
+int main()
+{
+	struction();
+	return 0;
+}
